@@ -1,0 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_short.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gegrigor <gevgrigoryaan@gmail.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/01 18:06:15 by gegrigor          #+#    #+#             */
+/*   Updated: 2026/03/06 18:28:19 by gegrigor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	sort_two(t_stack **a, t_count *count)
+{
+	if ((*a)->value > (*a)->next->value)
+		sa(a, count);
+}
+
+void	sort_three(t_stack **a, t_count *count)
+{
+	t_stack	*tmp;
+
+	tmp = *a;
+	if (!tmp || !tmp->next || !tmp->next->next)
+		return ;
+	if (tmp->value < tmp->next->value && tmp->value < tmp->next->next->value)
+	{
+		rra(a, count);
+		sa(a, count);
+	}
+	else if (tmp->value > tmp->next->value
+		&& tmp->value > tmp->next->next->value)
+	{
+		ra(a, count);
+		if ((*a)->value > (*a)->next->value)
+			sa(a, count);
+	}
+	else if (tmp->next->value > tmp->next->next->value)
+		rra(a, count);
+	else
+		sa(a, count);
+}
+
+void	sort_five(t_stack **a, t_stack **b, t_count *count)
+{
+	int		i;
+	t_stack	*tmp;
+	int		min;
+	int		min_2nd;
+
+	i = 0;
+	min = get_min(*a, 5);
+	min_2nd = get_2nd_min(*a, 5);
+	while (i < 5)
+	{
+		tmp = *a;
+		if (!tmp)
+			break ;
+		if (tmp->value == min || tmp->value == min_2nd)
+			pb(a, b, count);
+		else
+			ra(a, count);
+		i++;
+	}
+	tmp = *b;
+	if (tmp && tmp->next && tmp->value < tmp->next->value)
+		sb(b, count);
+	sort_three(a, count);
+	pa(a, b, count);
+	pa(a, b, count);
+}
