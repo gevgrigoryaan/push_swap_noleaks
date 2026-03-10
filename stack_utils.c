@@ -6,7 +6,7 @@
 /*   By: gegrigor <gevgrigoryaan@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 18:31:04 by gegrigor          #+#    #+#             */
-/*   Updated: 2026/03/10 13:11:12 by gegrigor         ###   ########.fr       */
+/*   Updated: 2026/03/10 13:18:38 by gegrigor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	char	*p;
 
 	p = ft_strjoin(s1, s2);
+	free(s1);
 	return (p);
 }
 

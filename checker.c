@@ -6,7 +6,7 @@
 /*   By: gegrigor <gevgrigoryaan@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 17:34:19 by gegrigor          #+#    #+#             */
-/*   Updated: 2026/03/10 13:08:05 by gegrigor         ###   ########.fr       */
+/*   Updated: 2026/03/10 13:15:19 by gegrigor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	read_operations(t_stack **a, t_stack **b, t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_data *data;
+	t_data	*data;
 	int		i;
 
 	i = 0;
