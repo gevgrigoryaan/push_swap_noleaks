@@ -6,7 +6,7 @@
 /*   By: gegrigor <gevgrigoryaan@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 17:34:19 by gegrigor          #+#    #+#             */
-/*   Updated: 2026/03/06 15:03:16 by gegrigor         ###   ########.fr       */
+/*   Updated: 2026/03/10 13:08:05 by gegrigor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	is_sorted(t_stack *a)
 	return (1);
 }
 
-static void	do_operations(t_stack **a, t_stack **b, char *op)
+static void	do_operations(t_stack **a, t_stack **b, char *op, t_data *data)
 {
 	if (!ft_strncmp(op, "sa\n", 3))
 		sa_bonus(a);
@@ -55,17 +55,17 @@ static void	do_operations(t_stack **a, t_stack **b, char *op)
 	else if (!ft_strncmp(op, "rrr\n", 4))
 		rrr_bonus(a, b);
 	else
-		exit_error();
+		exit_error(data);
 }
 
-static void	read_operations(t_stack **a, t_stack **b)
+static void	read_operations(t_stack **a, t_stack **b, t_data *data)
 {
 	char	*op;
 
 	op = get_next_line(0);
 	while (op)
 	{
-		do_operations(a, b, op);
+		do_operations(a, b, op, data);
 		free(op);
 		op = get_next_line(0);
 	}
@@ -73,29 +73,25 @@ static void	read_operations(t_stack **a, t_stack **b)
 
 int	main(int argc, char **argv)
 {
-	t_stack	*a;
-	t_stack	*b;
-	char	**args;
-	t_mode	*mode;
+	t_data *data;
 	int		i;
 
 	i = 0;
 	if (argc < 2)
 		return (0);
-	args = get_args(argc, argv);
-	mode = init_flags();
-	i += flags(args, mode);
-	if (!is_valid(args + i, argc - i - 1))
-		exit_error();
-	a = fill_stack_values(args + i);
-	b = NULL;
-	free(args);
-	read_operations(&a, &b);
-	if (is_sorted(a) && !b)
+	data = init_data();
+	data->args = get_args(argc, argv);
+	data->mode = init_flags();
+	i += flags(data->args, data->mode, data);
+	if (!is_valid(data->args + i, argc - i - 1))
+		exit_error(data);
+	data->a = fill_stack_values((data->args) + i, data);
+	data->b = NULL;
+	read_operations(&(data->a), &(data->b), data);
+	if (is_sorted(data->a) && !(data->b))
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	free_stack(a);
-	free_stack(b);
+	free_data(data);
 	return (0);
 }

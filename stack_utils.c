@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gegrigor <gegrigor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gegrigor <gevgrigoryaan@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 18:31:04 by gegrigor          #+#    #+#             */
-/*   Updated: 2026/03/09 17:29:12 by gegrigor         ###   ########.fr       */
+/*   Updated: 2026/03/10 13:11:12 by gegrigor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ t_stack	*fill_stack_values(char **args, t_data *data)
 		if (ft_strlen(args[i]) > 11)
 			exit_error(data);
 		nb = ft_atoi_long(args[i]);
-		free(args[i]);
 		if (nb > INT_MAX || nb < INT_MIN)
 			exit_error(data);
 		if (i == 0)
@@ -50,7 +49,6 @@ t_stack	*fill_stack_values(char **args, t_data *data)
 			stack_add_bottom(&stack_a, stack_new((int)nb));
 		i++;
 	}
-	free(args[i]);
 	check_dups(stack_a, data);
 	return (stack_a);
 }
@@ -60,7 +58,6 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	char	*p;
 
 	p = ft_strjoin(s1, s2);
-	free(s1);
 	return (p);
 }
 

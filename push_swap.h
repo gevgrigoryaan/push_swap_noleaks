@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gegrigor <gegrigor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gegrigor <gevgrigoryaan@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 16:48:02 by gegrigor          #+#    #+#             */
-/*   Updated: 2026/03/09 18:14:28 by gegrigor         ###   ########.fr       */
+/*   Updated: 2026/03/10 13:07:11 by gegrigor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ int		is_sorted(t_stack *a);
 void	assign_indices(t_stack *a, int n);
 void	check_dups(t_stack *a, t_data *data);
 void	free_data(t_data *data);
+t_data	*init_data(void);
 
 /*  validation checkers  */
 
